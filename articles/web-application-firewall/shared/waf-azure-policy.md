@@ -1,12 +1,11 @@
 ---
 title: Azure Web Application Firewall and Azure Policy
 description: Azure Web Application Firewall (WAF) combined with Azure Policy can help enforce organizational standards and assess compliance at-scale for WAF resources
-author: tremansdoerfer
-ms.service: web-application-firewall
-services: web-application-firewall
-ms.topic: conceptual
+author: halkazwini
+ms.author: halkazwini
+ms.service: azure-web-application-firewall
+ms.topic: concept-article
 ms.date: 05/25/2023
-ms.author: rimansdo
 ---
 
 # Azure Web Application Firewall and Azure Policy

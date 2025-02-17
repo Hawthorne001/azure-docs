@@ -2,11 +2,11 @@
 title: 'Tutorial: Scale an Azure Container Apps application'
 description: Scale an Azure Container Apps application using the Azure CLI.
 services: container-apps
-author: v-jaswel
-ms.service: container-apps
+author: craigshoemaker
+ms.service: azure-container-apps
 ms.topic: tutorial
-ms.date: 08/02/2023
-ms.author: v-wellsjason
+ms.date: 02/03/2025
+ms.author: cshoe
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ---
@@ -25,80 +25,7 @@ In this tutorial, you add an HTTP scale rule to your container app and observe h
 | GitHub Account | Get one for [free](https://github.com/join). |
 | Azure CLI | Install the [Azure CLI](/cli/azure/install-azure-cli). |
 
-## Setup
-
-Run the following command and follow the prompts to sign in to Azure from the CLI and complete the authentication process.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az login
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-```azurepowershell
-az login
-```
-
----
-
-Ensure you're running the latest version of the CLI via the `az upgrade` command.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az upgrade
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-```azurepowershell
-az upgrade
-```
-
----
-
-Install or update the Azure Container Apps extension for the CLI.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az extension add --name containerapp --upgrade
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-
-```azurepowershell
-az extension add --name containerapp --upgrade
-```
-
----
-
-Register the `Microsoft.App` and `Microsoft.OperationalInsights` namespaces if you haven't already registered them in your Azure subscription.
-
-# [Bash](#tab/bash)
-
-```azurecli
-az provider register --namespace Microsoft.App
-```
-
-```azurecli
-az provider register --namespace Microsoft.OperationalInsights
-```
-
-# [Azure PowerShell](#tab/azure-powershell)
-
-```azurepowershell
-az provider register --namespace Microsoft.App
-```
-
-```azurepowershell
-az provider register --namespace Microsoft.OperationalInsights
-```
-
----
+[!INCLUDE [container-apps-create-cli-steps.md](../../includes/container-apps-create-cli-steps.md)]
 
 ## Create and deploy the container app
 
@@ -126,7 +53,7 @@ az containerapp up \
   --query properties.configuration.ingress.fqdn \
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```powershell
 az containerapp up `
@@ -167,7 +94,7 @@ az containerapp update \
     --scale-rule-http-concurrency 1
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```powershell
 az containerapp update `
@@ -197,7 +124,7 @@ az containerapp logs show \
 	--follow=true
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```powershell
 az containerapp logs show `
@@ -284,7 +211,7 @@ For more information, see the documentation for:
 - [xargs](https://www.man7.org/linux/man-pages/man1/xargs.1.html)
 - [curl](https://www.man7.org/linux/man-pages/man1/curl.1.html)
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 Open a new command prompt and enter PowerShell. Run the following commands, replacing `<YOUR_CONTAINER_APP_FQDN>` with the fully qualified domain name for your container app that you saved from the [Create and deploy the container app](#create-and-deploy-the-container-app) section.
 

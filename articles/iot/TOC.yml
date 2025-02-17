@@ -43,6 +43,8 @@ items:
           href: howto-convert-to-pnp.md
       - name: Connect an on-premises SAP system to Azure
         href: howto-connect-on-premises-sap-to-azure.md
+      - name: Enable an industrial dataspace in Azure
+        href: howto-iot-industrial-dataspaces.md
 
   - name: Tutorials
     items:
@@ -70,7 +72,7 @@ items:
       href: tutorial-multiple-components.md
     - name: Connect a device module
       href: tutorial-migrate-device-to-module.md
-    - name: Use MQTT to connect a Mobile device
+    - name: Use MQTT to connect a device
       href: tutorial-use-mqtt.md
     - name: Implement the Industrial IoT reference solution
       href: tutorial-iot-industrial-solution-architecture.md
@@ -91,8 +93,6 @@ items:
           href: concepts-manage-device-reconnections.md
         - name: IoT device selection
           href: concepts-iot-device-selection.md
-        - name: Guide for Eclipse ThreadX security practices
-          href: concepts-eclipse-threadx-security-practices.md
       - name: IoT Plug and Play
         items:
         - name: What is IoT Plug and Play?
@@ -115,8 +115,6 @@ items:
             href: concepts-modeling-guide.md
           - name: Use models in a solution
             href: concepts-model-discovery.md
-          - name: Model parser
-            href: concepts-model-parser.md
       - name: MQTT support
         items:
         - name: Use MQTT with IoT Hub

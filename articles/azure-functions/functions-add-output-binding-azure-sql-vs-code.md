@@ -1,7 +1,7 @@
 ---
 title: Connect Azure Functions to Azure SQL Database using Visual Studio Code
 description: Learn how to connect Azure Functions to Azure SQL Database by adding an output binding to your Visual Studio Code project.
-ms.date: 04/25/2024
+ms.date: 12/29/2024
 ms.topic: quickstart
 author: dzsquared
 ms.author: drskwier
@@ -45,6 +45,9 @@ More details on the settings for [Azure SQL bindings and trigger for Azure Funct
     |**Server admin login**|Enter `azureuser`.|
     |**Password**|Enter a password that meets the complexity requirements.|
     |**Allow Azure services and resources to access this server**|Select **Yes**.|
+
+    >[!IMPORTANT]
+    >This article currently shows how to connect to Azure SQL Database by using SQL Server authentication. For the best security, you should instead use managed identities for the Azure SQL Database connection. For more information, see the [Create an Azure SQL Database server with a user-assigned managed identity](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity-create-server).
 
 1. Once the creation has completed, navigate to the database blade in the Azure portal, and, under **Settings**, select **Connection strings**. Copy the **ADO.NET** connection string for **SQL authentication**. Paste the connection string into a temporary document for later use.
 
@@ -223,16 +226,16 @@ Update *HttpExample\\function_app.py* to match the following code. Add the `toDo
 import azure.functions as func
 import logging
 from azure.functions.decorators.core import DataType
+import uuid
 
 app = func.FunctionApp()
 
 @app.function_name(name="HttpTrigger1")
 @app.route(route="hello", auth_level=func.AuthLevel.ANONYMOUS)
-@app.generic_output_binding(arg_name="toDoItems", type="sql", CommandText="dbo.ToDo", ConnectionStringSetting="SqlConnectionString"
-    data_type=DataType.STRING)
+@app.generic_output_binding(arg_name="toDoItems", type="sql", CommandText="dbo.ToDo", ConnectionStringSetting="SqlConnectionString",data_type=DataType.STRING)
 def test_function(req: func.HttpRequest, toDoItems: func.Out[func.SqlRow]) -> func.HttpResponse:
      logging.info('Python HTTP trigger function processed a request.')
-     name = req.params.get('name')
+     name = req.get_json().get('name')
      if not name:
         try:
             req_body = req.get_json()
@@ -242,7 +245,7 @@ def test_function(req: func.HttpRequest, toDoItems: func.Out[func.SqlRow]) -> fu
             name = req_body.get('name')
 
      if name:
-        toDoItems.set(func.SqlRow({"id": uuid.uuid4(), "title": name, "completed": false, url: ""}))
+        toDoItems.set(func.SqlRow({"Id": str(uuid.uuid4()), "title": name, "completed": False, "url": ""}))
         return func.HttpResponse(f"Hello {name}!")
      else:
         return func.HttpResponse(

@@ -4,23 +4,36 @@ titleSuffix: Azure Network Watcher
 description: Learn how to migrate your Azure Network Watcher network security group flow logs to virtual network flow logs using the Azure portal and a PowerShell script.
 author: halkazwini
 ms.author: halkazwini
-ms.service: network-watcher
+ms.service: azure-network-watcher
 ms.topic: how-to
-ms.date: 04/29/2024
-ms.custom: devx-track-azurepowershell
+ms.date: 10/28/2024
 
 #CustomerIntent: As an Azure administrator, I want to migrate my network security group flow logs to the new virtual network flow logs so that I can use all the benefits of virtual network flow logs, which overcome some of the network security group flow logs limitations.
 ---
 
 # Migrate from network security group flow logs to virtual network flow logs
 
-In this article, you learn how to migrate your existing network security group flow logs to virtual network flow logs. Virtual network flow logs overcome some of the limitations of network security group flow logs. For more information, see [Virtual network flow logs](vnet-flow-logs-overview.md).
+[!INCLUDE [NSG flow logs retirement](../../includes/network-watcher-nsg-flow-logs-retirement.md)]
+
+In this article, you learn how to migrate your existing network security group flow logs to virtual network flow logs using a migration script. Virtual network flow logs overcome some of the limitations of network security group flow logs. For more information, see [Virtual network flow logs](vnet-flow-logs-overview.md).
+
+> [!NOTE]
+> Use the migration script:
+> - when you don't have flow logging enabled on all network interfaces or subnets in a virtual network and you don't want to enable virtual network flow logging on all of them, or
+> - when your network security group flow logs in a virtual network have different configurations, and you want to create virtual network flow logs with those different configurations as the network security group flow logs.
+> 
+> Use Azure Policy:
+> - when you have the same network security group applied to all network interfaces or subnets in a virtual network,
+> - when you have the same network security group flow log configurations for all network interfaces or subnets in a virtual network, or
+> - when you want to enable virtual network flow logging on the virtual network level.
+> 
+> For more information, see [Deploy and configure virtual network flow logs using a built-in policy](vnet-flow-logs-policy.md#deploy-and-configure-virtual-network-flow-logs-using-a-built-in-policy).
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- PowerShell installed on your machine. For more information, see [Install PowerShell on Windows, Linux, and macOS](/powershell/scripting/install/installing-powershell). This article requires the Az PowerShell module. For more information, see [How to install Azure PowerShell](/powershell/azure/install-azure-powershell). To find the installed version, run `Get-Module -ListAvailable Az`. 
+- PowerShell 7 installed on your machine. For more information, see [Install PowerShell on Windows, Linux, and macOS](/powershell/scripting/install/installing-powershell). This article requires the Az PowerShell module. For more information, see [How to install Azure PowerShell](/powershell/azure/install-azure-powershell). To find the installed version, run `Get-Module -ListAvailable Az`. 
 
 - Necessary RBAC permissions for the subscriptions of the flow logs and Log Analytics workspaces (if traffic analytics is enabled for any of the network security group flow logs). For more information, see [Network Watcher permissions](required-rbac-permissions.md).
 
@@ -30,9 +43,9 @@ In this article, you learn how to migrate your existing network security group f
 
 In this section, you learn how to generate and download the migration files for the network security group flow logs that you want to migrate. 
 
-1. In the search box at the top of the portal, enter *network watcher*. Select **Network Watcher** in the search results.
+1. In the search box at the top of the portal, enter *network watcher*. Select **Network Watcher** from the search results.
 
-    :::image type="content" source="./media/nsg-flow-logs-migrate/portal-search.png" alt-text="Screenshot that shows how to search for Network Watcher in the Azure portal." lightbox="./media/nsg-flow-logs-migrate/portal-search.png":::
+    :::image type="content" source="./media/network-watcher-portal-search.png" alt-text="Screenshot that shows how to search for Network Watcher in the Azure portal." lightbox="./media/network-watcher-portal-search.png":::
 
 1. Under **Logs**, select **Migrate flow logs**.
 
@@ -121,6 +134,15 @@ In this section, you learn how to use the script file that you downloaded in the
 1. Enter *delete* and then select **Delete** to confirm the deletion.
 
     :::image type="content" source="./media/nsg-flow-logs-migrate/delete-flow-logs-confirmation.png" alt-text="Screenshot that shows how to confirm the deletion of migrated flow logs." lightbox="./media/nsg-flow-logs-migrate/delete-flow-logs-confirmation.png":::
+
+## Considerations
+
+- **Scale set with a load balancer**: The migration script enables virtual network flow logging on the subnet that has the scale set virtual machines.
+
+    > [!NOTE]
+    > If network security group flow logging is not enabled on all network interfaces of the scale set, or the network interfaces don't share the same network security group flow log, then a virtual network flow log is created on the subnet with the same configurations as one of the network interfaces of the scale set.
+
+- **PaaS**: The migration script doesn't support environments with PaaS solutions that have network security group flow logs in a user's subscription but target resources are in different subscriptions. For such environments, you should manually enable virtual network flow logging on the virtual network or subnet of the PaaS solution.
 
 ## Related content
 

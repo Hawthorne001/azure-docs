@@ -4,7 +4,7 @@ description: Understand the options during server endpoint creation and how to b
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 02/05/2024
+ms.date: 05/08/2024
 ms.author: kendownie
 ---
 
@@ -27,6 +27,7 @@ To create a server endpoint, you must first ensure that the following criteria a
 - Ensure that a Storage Sync Service has been deployed. See [How to deploy Azure File Sync](file-sync-deployment-guide.md) for details on how to deploy a Storage Sync Service. 
 - Ensure that a sync group has been deployed. Learn how to [Create a sync group](file-sync-deployment-guide.md#create-a-sync-group-and-a-cloud-endpoint).
 - Ensure that the server is connected to the internet and that Azure is accessible. Azure File Sync uses port 443 for all communication between the server and cloud service.
+- Ensure that you're within the allowed limits for creating endpoints. See [Azure File Sync Scale Targets](../files/storage-files-scale-targets.md#azure-file-sync-scale-targets) for details on scalability and performance targets.
 
 ## Create a server endpoint
 
@@ -102,6 +103,27 @@ How files appear on the server after initial download finishes depends on your u
 * **Cloud tiering is enabled** </br> New and changed files from other server endpoints will appear as tiered files on this server endpoint. These changes will only come down as full files if you opted for [proactive recall](file-sync-cloud-tiering-overview.md#proactive-recalling) of changes in the Azure file share by other server endpoints.
 *  **Cloud tiering is disabled** </br> New and changed files from other server endpoints will appear as full files on this server endpoint. They won't appear as tiered files first and then recalled. Tiered files with cloud tiering off are a fast disaster recovery feature and appear only during initial provisioning.
 
+### Provisioning steps
+
+When a new server endpoint is created using the portal or PowerShell, the server endpoint isn't ready to be used immediately. Depending on how much data is present on the corresponding file share in the cloud, it might take few minutes to hours for the server endpoint to be functional and ready to use.
+
+In the past, if you wanted to check the status of the server endpoint provisioning status and whether the server is ready for users to access data, you had to log in to the server endpoint and see if all the data had been downloaded. With provisioning steps, you can understand whether a server endpoint is ready to use or not and if the sync is fully functional directly from the Azure portal, in the server endpoint overview blade.
+
+For supported scenarios, the **Provisioning steps** tab provides information on what's happening on the server endpoint, including when the server endpoint is ready for user access.
+
+#### Supported scenarios
+
+Currently, provisioning steps are only displayed when the new server endpoint being added has no data on the server path selected for the server endpoint. In other scenarios, the provisioning steps tab isn't available.
+
+#### Provisioning status
+
+Here are the different statuses that are displayed when server endpoint provisioning is in progress and what they mean:
+* In progress: SEP isn't ready for user access.
+* Ready (sync not functional): Users can access data, but changes won't sync to cloud file share.
+* Ready (sync functional): Users can access data and changes will be synced to the cloud share making the endpoint fully functional.
+* Failed: Provisioning failed because of an error.
+
+The provisioning steps tab is only visible in the Azure portal for supported scenarios. It won't be available or visible for unsupported scenarios.
 
 ## Next steps
 

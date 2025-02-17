@@ -4,7 +4,7 @@ titleSuffix: Azure API Management
 description: Learn how to secure user access to an API in Azure API Management with OAuth 2.0 user authorization and Microsoft Entra ID.
 services: api-management
 author: dlepow
-ms.service: api-management
+ms.service: azure-api-management
 ms.topic: article
 ms.date: 04/27/2022
 ms.author: danlep
@@ -79,7 +79,7 @@ For details about app registration, see [Quickstart: Configure an application to
 
 ## Authorization workflow
 
-1. A user or application acquires a token from Microsoft Entra ID with permissions that grant access to the backend-app. 
+1. A user or application acquires a token from Microsoft Entra ID with permissions that grant access to the backend-app. If you use the v2 endpoint, ensure that the accessTokenAcceptedVersion property is set to 2 in the application manifest of the back end app and any client app that you configure.
 
 1. The token is added in the Authorization header of API requests to API Management. 
 

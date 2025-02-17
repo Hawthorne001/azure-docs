@@ -6,8 +6,10 @@ services: dev-box
 ms.service: dev-box
 ms.author: rosemalcolm
 author: RoseHJM
-ms.date: 01/30/2024
+ms.date: 01/29/2025
 ms.topic: tutorial
+
+#customer intent: As a developer, I want to connect to my dev box by using a remote desktop client so that I can access my development environment from a different device.
 ---
 
 # Tutorial: Use a remote desktop client to connect to a dev box 
@@ -16,8 +18,7 @@ In this tutorial, you download and use a remote desktop (RDP) client application
 
 Remote desktop apps let you use and control a dev box from almost any device. For your desktop or laptop, you can choose to download the Remote Desktop client for Windows Desktop or Microsoft Remote Desktop for Mac. You can also download a remote desktop app for your mobile device: Microsoft Remote Desktop for iOS or Microsoft Remote Desktop for Android. 
 
-> [!TIP]
-> Many remote desktops apps allow you to [use multiple monitors](tutorial-configure-multiple-monitors.md) when you connect to your dev box.
+[!INCLUDE [note-windows-app](includes/note-windows-app.md)]
 
 Alternately, you can access your dev box through the browser from the Microsoft Dev Box developer portal.
 
@@ -36,7 +37,9 @@ To complete this tutorial, you must have access to a dev box through the develop
 
 You can use a remote desktop client application to access your dev box in Microsoft Dev Box. Remote desktop clients are available for many operating systems and devices, including mobile devices running iOS, iPadOS or Android. 
 
-Select the relevant tab to view the steps to download and use the Remote Desktop client application from Windows or non-Windows operating systems.
+For information about Microsoft Remote Desktop clients for macOS, iOS/iPadOS, and Android/Chrome OS, see: [Remote Desktop clients for Remote Desktop Services and remote PCs](/windows-server/remote/remote-desktop-services/clients/remote-desktop-clients). 
+
+Select the relevant tab to view the steps to download and use the Remote Desktop client application from Windows or macOS.
 
 # [Windows](#tab/windows)
 
@@ -60,46 +63,6 @@ To download and set up the Remote Desktop client for Windows:
 
 1. After the Remote Desktop MSI file downloads to your computer, open the file and follow the prompts to install the Remote Desktop app. 
 
-### Connect to a dev box by using a subscription URL
-
-Each dev box project is represented as a Workspace in Remote Desktop. When you're working with multiple dev boxes, across multiple projects, you can use Remote Desktop to switch between them. To make a switch, you need to add the subscription URL for each Workspace to Remote Desktop. With the Remote Desktop app, you can subscribe to multiple Workspaces, allowing you to view and connect to all your dev boxes.  
-
-To get the subscription URL for your Workspace:
-
-1. Sign in to the [developer portal](https://aka.ms/devbox-portal).
- 
-1. Open help (**?**), and then select **Configure Remote Desktop**. 
- 
-   :::image type="content" source="media/tutorial-connect-to-dev-box-with-remote-desktop-app/dev-box-rdp-get-subscription-url.png" alt-text="Screenshot showing the developer portal help pane with subscription URL highlighted.":::
-
-1. In **Configure Remote Desktop**, next to the subscription feed URL, select **Copy**.
-
-   :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/dev-box-rdp-subscription-windows.png" alt-text="Screenshot of the Configure Remote Desktop dialog with the subscription feed URL highlighted.":::
-
-1. Open the Remote Desktop app. 
- 
-   :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/remote-desktop-app.png" alt-text="Screenshot of the Windows 11 start menu with Remote desktop showing and open highlighted.":::
-
-   1. If you're using the Remote Desktop app for the first time, you see the **Let's get started** page. Select **Subscribe with URL**.
-
-      :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/remote-desktop-app-get-started.png" alt-text="Screenshot of the Remote Desktop Let's get started page."::: 
-
-   1. If you previously used the Remote Desktop app, you see your Workspaces. Select More options (**...**), and then select **Subscribe with URL**.
-
-      :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/remote-desktop-app-more-options.png" alt-text="Screenshot of the Remote Desktop app with the More options menu highlighted.":::
-
-1. In the **Email or Workspace URL** box, paste the Workspace URL you copied in step 3.
-
-   After the system confirms your Workspace URL, you can continue by selecting **Next**.
-
-   :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/remote-desktop-app-add-subscription-with-url.png" alt-text="Screenshot of the Remote Desktop Subscribe with URL dialog.":::
-
-1. Remote Desktop gets the information from your Workspace and adds it to the Workspaces list.
-
-   :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/remote-desktop-app-workspace.png" alt-text="Screenshot of the Remote Desktop Workspace.":::
-
-1. To start the connection with the Remote Desktop app, double-click the dev box that you want to connect to from your Workspace.
-
 ### Connect to your dev box from the developer portal
 
 In addition to connecting through the Remote Desktop app, you can also connect to your dev boxes from the developer portal. 
@@ -116,11 +79,11 @@ To open the Remote Desktop client:
 
    :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/open-windows-desktop.png" alt-text="Screenshot of the option to open the Windows Remote Desktop client in the connection dialog.":::
 
-# [Non-Windows](#tab/non-Windows)
+# [macOS](#tab/macOS)
 
 ### Download the Remote Desktop client 
 
-To use a non-Windows Remote Desktop client to connect to your dev box:
+To use a macOS Remote Desktop client to connect to your dev box:
 
 1. Sign in to the [developer portal](https://aka.ms/devbox-portal).
 
@@ -144,7 +107,7 @@ To use a non-Windows Remote Desktop client to connect to your dev box:
 
 1. Your dev box appears in the Remote Desktop client's **Workspaces** area. Double-click the dev box to connect.
 
-   :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/non-windows-rdp-connect-dev-box.png" alt-text="Screenshot of a dev box in a non-Windows Remote Desktop client Workspace." lightbox="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/non-windows-rdp-connect-dev-box.png":::
+   :::image type="content" source="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/non-windows-rdp-connect-dev-box.png" alt-text="Screenshot of a dev box in a macOS Remote Desktop client Workspace." lightbox="./media/tutorial-connect-to-dev-box-with-remote-desktop-app/non-windows-rdp-connect-dev-box.png":::
 ---
 
 ## Clean up resources

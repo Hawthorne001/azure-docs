@@ -1,9 +1,9 @@
 ---
 author: baanders
 description: include file stating private endpoint limitation of Azure Digital Twins Explorer
-ms.service: digital-twins
+ms.service: azure-digital-twins
 ms.topic: include
-ms.date: 04/19/2024
+ms.date: 01/27/2025
 ms.author: baanders
 ---
 

@@ -4,6 +4,7 @@ description: Learn how to use the Nexus Fabric Read Write commands to modify dev
 author: HollyCl
 ms.author: HollyCl
 ms.service: azure-operator-nexus
+ms.custom: devx-track-azurecli
 ms.topic: concept-article 
 ms.date: 05/03/2024
 #CustomerIntent: As a <type of user>, I want <what?> so that <why?>.
@@ -25,18 +26,42 @@ Ensure that the Nexus Network Fabric is successfully provisioned.
 
 When you execute an RW configuration command and make changes to the device, the device's configuration state is moved to **Deferred Control**. This state indicates that the RW configuration was pushed on that device. When the applied RW configuration is reversed, then the device's configuration reverts to its original **succeeded** state.
 
+## Select Network Device
+
+Sign in to the [Azure portal](https://portal.azure.com/)
+
+### Access the Network Devices:
+
+Once logged in, use the search bar at the top to search for `Network Devices` or navigate to All Services and find Network Devices under the Networking category.
+
+Click on Network Devices to open the list of network devices in your subscription.
+
+### Select the Network Device:
+
+From the list of network devices, find and click on the network device you want to configure. This will take you to the details page of the selected network device.
+
+Take note of the resource name and the resource group of this network device, as you will need these for the CLI command.
+
+Or 
+
+To get the name of the resource, click on the JSON view (found in the Properties or Overview section) which displays the detailed properties of the device, including the resource name.
+
+:::image type="content" source="media/network-device-overview.png" alt-text="Screenshot of Azure portal showing the overview of the network device." lightbox="media/network-device-overview.png":::
+
+
 ## Examples
 
 The following sections provide examples of RW commands can be used to modify the configuration of the device. The examples use Ethernet interfaces 1, 2, and 3 to show you how to adjust the interface name, and allow you to observe the results of these modifications.
 
+
 ### Snapshot of the Network Fabric device before making changes to the configuration using RW API
 
-```bash
+```device cli
 show interfaces description  
 ```
 
 ```Output
-|Interface  |Status  |Protocol  |Decsription  |
+|Interface  |Status  |Protocol  |Description  |
 |---------|---------|---------|---------|
 |Et1      | admin down        | down          | **"AR-Mgmt2:Et1 to Not-Connected"**          |
 |Et2      | admin down        | down          | **"AR-Mgmt2:Et2 to Not-Connected"**         |
@@ -49,7 +74,7 @@ show interfaces description
 The example shows how to change the device's interface description to RW-test.
 
 ```azurecli
-az networkfabric device run-rw --resource-name <ResourceName> --resource-group <ResourceGroupName> --rw-command "interface Ethernet 1\\n description RW-test"
+az networkfabric device run-rw --resource-name <ResourceName> --resource-group <ResourceGroupName> --rw-command "interface Ethernet 1\n description RW-test"
 ```
 
 | Parameter                | Description                                                                                                                   |
@@ -137,12 +162,12 @@ The Status should indicate whether the API succeeded or failed.
 
 When the RW configuration succeeds, the device configuration state moves to a **deferred control** state. No change in state occurs if the configuration fails.
 
-```bash
+```device cli
 show interfaces description  
 ```
 
 ```Output
-|Interface  |Status  |Protocol  |Decsription  |
+|Interface  |Status  |Protocol  |Description  |
 |---------|---------|---------|---------|
 |Et1      | admin down        | down          | **RW-test1**         |
 |Et2      | admin down        | down          | "AR-Mgmt2:Et2 to Not-Connected"        |
@@ -243,12 +268,12 @@ Expected output:
 } 
 ```
 
-```bash
+```device cli
 show interfaces description  
 ```
 
 ```Output
-|Interface  |Status  |Protocol  |Decsription  |
+|Interface  |Status  |Protocol  |Description  |
 |---------|---------|---------|---------|
 |Et1      | admin down        | down          | **RW-test1**         |
 |Et2      | admin down        | down          | **RW-test2**         |
@@ -347,12 +372,12 @@ Expected output:
 } 
 ```
 
-```bash
+```device cli
 show interfaces description
 ```
 
 ```Output
-|Interface  |Status  |Protocol  |Decsription  |
+|Interface  |Status  |Protocol  |Description  |
 |---------|---------|---------|---------|
 |Et1      | admin down        | down          | "AR-Mgmt2:Et1 to Not-Connected"          |
 |Et2      | admin down        | down          | "AR-Mgmt2:Et2 to Not-Connected"        |
@@ -455,12 +480,12 @@ Expected output:
 
 When the RW configuration is reverted back to the original configuration, the configuration state of the device is moved to **"Succeeded"** from **Deferred Control**.
 
-```bash
+```device cli
 show interfaces description
 ```
 
 ```Output
-|Interface  |Status  |Protocol  |Decsription  |
+|Interface  |Status  |Protocol  |Description  |
 |---------|---------|---------|---------|
 |Et1      | admin down        | down          | **"AR-Mgmt2:Et1 to Not-Connected"**         |
 |Et2      | admin down        | down          | **"AR-Mgmt2:Et2 to Not-Connected"**         |

@@ -2,11 +2,12 @@
 title: Web SDK supported browsers
 titleSuffix: Microsoft Azure Maps
 description: Find out how to check whether the Azure Maps Web SDK supports a browser. View a list of supported browsers. Learn how to use map services with legacy browsers.
-author: eriklindeman
-ms.author: eriklind
+author: sinnypan
+ms.author: sipa
 ms.date: 06/22/2023
 ms.topic: how-to
 ms.service: azure-maps
+ms.subservice: general
 ms.custom: devx-track-js
 ---
 
@@ -68,8 +69,6 @@ The [Render Azure Maps in Leaflet] Azure Maps sample shows how to render Azure M
 
 For more code samples using Azure Maps in Leaflet, see [Azure Maps Samples].
 
-For a list of third-party map control plug-ins, see [Azure Maps community - Open-source projects].
-
 ## Next steps
 
 Learn more about the Azure Maps Web SDK:
@@ -81,7 +80,6 @@ Learn more about the Azure Maps Web SDK:
 > [Services module]
 
 [atlas.isSupported]: /javascript/api/azure-maps-control/atlas#issupported-boolean-
-[Azure Maps community - Open-source projects]: open-source-projects.md#third-party-map-control-plugins
 [Azure Maps Leaflet plugin]: https://github.com/azure-samples/azure-maps-leaflet
 [Azure Maps Samples]: https://samples.azuremaps.com/?search=leaflet
 [documentation]: how-to-use-services-module.md

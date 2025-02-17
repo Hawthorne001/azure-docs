@@ -4,8 +4,8 @@ titleSuffix: Azure Web Application Firewall
 description: This article explains how you can use Azure Web Application Firewall with Azure Front Door or Azure Application Gateway to protect your web applications against application layer DDoS attacks.
 author: duongau
 ms.author: duau
-ms.service: web-application-firewall
-ms.topic: conceptual
+ms.service: azure-web-application-firewall
+ms.topic: concept-article
 ms.date: 06/16/2023
 ---
 

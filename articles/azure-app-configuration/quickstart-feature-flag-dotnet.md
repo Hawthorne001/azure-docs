@@ -1,9 +1,9 @@
 ---
 title: Quickstart for adding feature flags to .NET/.NET Framework apps
 titleSuffix: Azure App Configuration
-description: A quickstart for adding feature flags to .NET/.NET Framework apps and managing them in Azure App Configuration.
+description: Learn to implement feature flags in your .NET application using feature management and Azure App Configuration. Dynamically manage feature rollouts, conduct A/B testing, and control feature visibility without redeploying the app.
 services: azure-app-configuration
-author: zhiyuanliang
+author: zhiyuanliang-ms
 ms.service: azure-app-configuration
 ms.devlang: csharp
 ms.custom: devx-track-csharp, mode-other, devx-track-dotnet
@@ -40,9 +40,9 @@ You can use Visual Studio to create a new console app project.
 
 1. Start Visual Studio, and select **File** > **New** > **Project**.
 
-1. In **Create a new project**, filter on the **Console** project type and select **Console App**. If you want to create a .NET Framework app, please select **Console App (.NET Framework)** instead. Click **Next**.
+1. In **Create a new project**, filter on the **Console** project type and select **Console App**. If you want to create a .NET Framework app, select **Console App (.NET Framework)** instead. Click **Next**.
 
-1. In **Configure your new project**, enter a project name. If you are creating a .NET Framework app, please select **.NET Framework 4.7.2** or higher under **Framework**. Click **Create**.
+1. In **Configure your new project**, enter a project name. If you're creating a .NET Framework app, select **.NET Framework 4.7.2** or higher under **Framework**. Click **Create**.
 
 ## Use the feature flag
 
@@ -77,7 +77,7 @@ You can use Visual Studio to create a new console app project.
 
     IFeatureDefinitionProvider featureDefinitionProvider = new ConfigurationFeatureDefinitionProvider(configuration);
 
-    IFeatureManager featureManager = new FeatureManager(
+    IVariantFeatureManager featureManager = new FeatureManager(
         featureDefinitionProvider, 
         new FeatureManagementOptions());
 
@@ -103,7 +103,7 @@ You can use Visual Studio to create a new console app project.
 
         IFeatureDefinitionProvider featureDefinitionProvider = new ConfigurationFeatureDefinitionProvider(configuration);
 
-        IFeatureManager featureManager = new FeatureManager(
+        IVariantFeatureManager featureManager = new FeatureManager(
             featureDefinitionProvider, 
             new FeatureManagementOptions());
 
@@ -127,17 +127,17 @@ You can use Visual Studio to create a new console app project.
     If you use the Windows command prompt, run the following command.
 
     ```console
-    setx ConnectionString "connection-string-of-your-app-configuration-store"
+    setx ConnectionString "<connection-string-of-your-app-configuration-store>"
     ```
 
-    Restart the command prompt to allow the change to take effect. Print the value of the environment variable to validate that it's set properly.
+    Restart the command prompt to allow the change to take effect. Validate that it's set properly by printing the value of the environment variable.
 
     ### [PowerShell](#tab/powershell)
 
     If you use Windows PowerShell, run the following command.
 
     ```azurepowershell
-    $Env:ConnectionString = "connection-string-of-your-app-configuration-store"
+    $Env:ConnectionString = "<connection-string-of-your-app-configuration-store>"
     ```
 
     ---
@@ -152,7 +152,7 @@ You can use Visual Studio to create a new console app project.
 
 1. Sign in to the [Azure portal](https://portal.azure.com). Select **All resources**, and select the App Configuration store that you created previously. 
 
-1. Select **Feature manager** and locate the **Beta** feature flag. Enable the flag by selecting the checkbox under **Enabled**.
+1. Select **Feature manager** and locate the *Beta* feature flag. Enable the flag by selecting the checkbox under **Enabled**.
 
 1. Run the application again. You should see the Beta message in the console.
 
@@ -166,10 +166,21 @@ You can use Visual Studio to create a new console app project.
 
 In this quickstart, you created a feature flag in App Configuration and used it with a console app. To learn how to dynamically update feature flags and other configuration values without restarting the application, continue to the next tutorial.
 
-
 > [!div class="nextstepaction"]
 > [Enable dynamic configuration in a .NET app](./enable-dynamic-configuration-dotnet-core.md)
 
 > [!div class="nextstepaction"]
 > [Enable dynamic configuration in a .NET Framework app](./enable-dynamic-configuration-dotnet.md)
 
+To enable feature management capability for other types of apps, continue to the following tutorials.
+
+> [!div class="nextstepaction"]
+> [Use feature flags in ASP.NET Core apps](./quickstart-feature-flag-aspnet-core.md)
+
+> [!div class="nextstepaction"]
+> [Use feature flags in .NET background services](./quickstart-feature-flag-dotnet-background-service.md)
+
+For the full feature rundown of the .NET feature management library, continue to the following document.
+
+> [!div class="nextstepaction"]
+> [.NET Feature Management](./feature-management-dotnet-reference.md)

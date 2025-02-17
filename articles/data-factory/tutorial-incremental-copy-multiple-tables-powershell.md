@@ -4,11 +4,10 @@ description: In this tutorial, you create an Azure Data Factory with a pipeline 
 ms.author: yexu
 author: dearandyxu
 ms.reviewer: douglasl, jburchel
-ms.service: data-factory
-ms.subservice: tutorials
 ms.topic: tutorial
 ms.custom: devx-track-azurepowershell
-ms.date: 08/10/2023
+ms.date: 10/03/2024
+ms.subservice: data-movement
 ---
 
 # Incrementally load data from multiple tables in SQL Server to Azure SQL Database using PowerShell
@@ -226,7 +225,7 @@ END
 
 ### Azure PowerShell
 
-Install the latest Azure PowerShell modules by following the instructions in [Install and configure Azure PowerShell](/powershell/azure/azurerm/install-azurerm-ps).
+Install the latest Azure PowerShell modules by following the instructions in [Install and configure Azure PowerShell](/powershell/azure/install-azure-powershell).
 
 ## Create a data factory
 

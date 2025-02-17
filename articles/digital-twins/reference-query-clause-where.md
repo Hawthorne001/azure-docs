@@ -5,9 +5,9 @@ titleSuffix: Azure Digital Twins
 description: Reference documentation for the Azure Digital Twins query language WHERE clause
 author: baanders
 ms.author: baanders # Microsoft employees only
-ms.date: 02/25/2022
-ms.topic: article
-ms.service: digital-twins
+ms.date: 01/27/2025
+ms.topic: reference
+ms.service: azure-digital-twins
 
 # Optional fields. Don't forget to remove # if you need a field.
 # ms.custom: can-be-multiple-comma-separated

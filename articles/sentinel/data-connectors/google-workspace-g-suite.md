@@ -110,7 +110,7 @@ To integrate with Google Workspace (G Suite) (using Azure Functions) make sure y
 >**(Optional Step)** Securely store workspace and API authorization key(s) or token(s) in Azure Key Vault. Azure Key Vault provides a secure mechanism to store and retrieve key values. [Follow these instructions](/azure/app-service/app-service-key-vault-references) to use Azure Key Vault with an Azure Function App.
 
 
-**NOTE:** This data connector depends on a parser based on a Kusto Function to work as expected which is deployed as part of the solution. To view the function code in Log Analytics, open Log Analytics/Microsoft Sentinel Logs blade, click Functions and search for the alias GWorkspaceReports and load the function code or click [here](https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/GoogleWorkspaceReports/Parsers/GWorkspaceActivityReports), on the second line of the query, enter the hostname(s) of your GWorkspaceReports device(s) and any other unique identifiers for the logstream. The function usually takes 10-15 minutes to activate after solution installation/update.
+**NOTE:** This data connector depends on a parser based on a Kusto Function to work as expected which is deployed as part of the solution. To view the function code in Log Analytics, open Log Analytics/Microsoft Sentinel Logs blade, click Functions and search for the alias GWorkspaceReports and load the function code, on the second line of the query, enter the hostname(s) of your GWorkspaceReports device(s) and any other unique identifiers for the logstream. The function usually takes 10-15 minutes to activate after solution installation/update.
 
 
 **STEP 1 - Ensure the prerequisites to obtain the Google Pickel String**
@@ -135,7 +135,7 @@ To integrate with Google Workspace (G Suite) (using Azure Functions) make sure y
 	 3. In Scopes section, add **Admin SDK API** scope.
 	 4. In Test Users section, make sure the domain admin account is added.
  5. Go to ***APIs & Services*** -> ***Credentials*** and create OAuth 2.0 Client ID
-	 1. Click on Create Credentials on the top and select Oauth client Id.
+	 1. Click on Create Credentials on the top and select OAuth client Id.
 	 2. Select Web Application from the Application Type drop down.
 	 3. Provide a suitable name to the Web App and add http://localhost:8081/ as one of the Authorized redirect URIs.
 	 4. Once you click Create, download the JSON from the pop-up that appears. Rename this file to "**credentials.json**".

@@ -26,8 +26,15 @@ The Premium V3 tier is available for both native and custom containers, includin
 
 Premium V3 as well as specific Premium V3 SKUs are available in some Azure regions and availability in additional regions is being added continually. To see if a specific PremiumV3 offering is available in your region, run the following Azure CLI command in the [Azure Cloud Shell](../cloud-shell/overview.md) (substitute _P1v3_ with the desired SKU):
 
+**Windows** SKU availability
+
 ```azurecli-interactive
 az appservice list-locations --sku P1V3
+```
+**Linux** SKU availability
+
+```azurecli-interactive
+az appservice list-locations --linux-workers-enabled --sku P1V3
 ```
 
 <a name="create"></a>
@@ -99,7 +106,7 @@ az appservice plan create \
 
 ### Azure PowerShell
 
-[!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
+[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 The following command creates an App Service plan in _P1V3_. The options for `-WorkerSize` are _Small_, _Medium_, and _Large_.
 
@@ -114,5 +121,5 @@ New-AzAppServicePlan -ResourceGroupName <resource_group_name> `
 ## More resources
 
 * [Scale up an app in Azure](manage-scale-up.md)
-* [Scale instance count manually or automatically](../azure-monitor/autoscale/autoscale-get-started.md)
+* [Scale instance count manually or automatically](/azure/azure-monitor/autoscale/autoscale-get-started)
 * [Tutorial: Run a load test to identify performance bottlenecks in a web app](../load-testing/tutorial-identify-bottlenecks-azure-portal.md)

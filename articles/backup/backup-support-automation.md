@@ -1,11 +1,12 @@
 ---
 title: Automation in Azure Backup support matrix
 description: This article summarizes automation tasks related to Azure Backup support.
-ms.date: 11/04/2022
-ms.topic: conceptual
-ms.service: backup
-author: AbhishekMallick-MS
-ms.author: v-abhmallick
+ms.date: 02/09/2025
+ms.topic: reference
+ms.service: azure-backup
+author: jyothisuri
+ms.author: jsuri
+ms.custom: engagement-fy24
 ---
 
 # Support matrix for automation in Azure Backup
@@ -27,7 +28,7 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 | Restore | Create a VM from restored disks | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#using-managed-identity-to-restore-disks). | Supported   <br><br> [See the examples](./tutorial-restore-disk.md#using-managed-identity-to-restore-disks). | Supported   <br><br> [See the examples](/rest/api/backup/restores/trigger). | N/A | N/A | N/A | N/A |
 | Restore | Restore files | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#create-a-vm-from-restored-disks). | Supported   <br><br> [See the examples](./tutorial-restore-disk.md#create-a-vm-from-the-restored-disk). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-restoreazurevms.md#restore-disks). | N/A | N/A | N/A | N/A |
 | Manage | Monitor jobs | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#restore-files-from-an-azure-vm-backup). | Supported   <br><br> [See the examples](./tutorial-restore-files.md). | N/A | N/A | N/A | N/A |
-| Manage | Modify backup policy | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#monitoring-a-backup-job). | Supported   <br><br> [See the examples](./quick-backup-vm-cli.md#monitor-the-backup-job). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-managejobs.md#tracking-the-job). | N/A | N/A | N/A | N/A |
+| Manage | Modify backup policy | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#monitoring-a-backup-job). | Supported   <br><br> [See the examples](./quick-backup-vm-cli.md#monitor-the-backup-job). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-managejobs.md#track-the-job). | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and retain backup data | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#retain-data). | Supported   <br><br> [See the examples](/cli/azure/backup/protection#az-backup-protection-disable). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-backupazurevms.md#stop-protection-but-retain-existing-data). | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and delete backup data | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#delete-backup-data). | Supported   <br><br> [See the examples](/cli/azure/backup/protection#az-backup-protection-disable). | Supported   <br><br> [See the examples](./backup-azure-arm-userestapi-backupazurevms.md#stop-protection-and-delete-data). | N/A | N/A | N/A | N/A |
 | Manage | Resume protection | Supported   <br><br> [See the examples](./backup-azure-vms-automation.md#resume-backup).    | Supported    <br><br> [See the examples](/cli/azure/backup/protection#az-backup-protection-resume). | Supported    <br><br> [See the examples](./backup-azure-arm-userestapi-backupazurevms.md#undo-the-deletion) | N/A | N/A | N/A | N/A |
@@ -43,8 +44,8 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 | Restore | Restore to a point in time | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#original-restore-with-log-point-in-time). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Restore | Cross-region restore | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#alternate-workload-restore-to-a-vault-in-secondary-region). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Monitor jobs | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#track-azure-backup-jobs). | Supported | Supported | N/A | N/A | N/A | N/A |
-| Manage | Manage Azure Monitor Alerts (preview) | Supported    <br><br> [See the examples](../azure-monitor/powershell-samples.md). | Supported | Supported | N/A | N/A | N/A | N/A |
-| Manage | Manage Azure Monitor Metrics (preview) | Supported    <br><br> [See the examples](../azure-monitor/powershell-samples.md). | Supported | Supported | N/A | N/A | N/A | N/A |
+| Manage | Manage Azure Monitor Alerts (preview) | Supported    <br><br> [See the examples](/azure/azure-monitor/powershell-samples). | Supported | Supported | N/A | N/A | N/A | N/A |
+| Manage | Manage Azure Monitor Metrics (preview) | Supported    <br><br> [See the examples](/azure/azure-monitor/powershell-samples). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Modify backup policy | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#change-policy-for-backup-items). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and retain backup data | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#retain-data). | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and delete backup data | Supported    <br><br> [See the examples](./backup-azure-sql-automation.md#delete-backup-data). | Supported | Supported | N/A | N/A | N/A | N/A |
@@ -85,7 +86,7 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Backup | Create backup policy and configure backup | Supported    <br><br> [See the examples](./backup-blobs-storage-account-ps.md). | Supported    <br><br> [See the examples](./backup-blobs-storage-account-cli.md). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-backup-blobs.md). | Currently not supported | Supported | Supported    <br><br> [See the examples](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.dataprotection/backup-create-storage-account-enable-protection). | Supported    <br><br> [See the examples](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_instance_blob_storage). |
 | Restore | Restore blobs | Supported    <br><br> [See the examples](./restore-blobs-storage-account-ps.md). | Supported    <br><br> [See the examples](./restore-blobs-storage-account-cli.md). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-restore-blobs.md). | N/A | N/A | N/A | N/A |
-| Manage | Monitor jobs | Supported    <br><br> [See the examples](./restore-blobs-storage-account-ps.md#tracking-job). | Supported    <br><br> [See the examples](./restore-blobs-storage-account-cli.md#tracking-job). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-restore-blobs.md#track-jobs). | N/A | N/A | N/A | N/A |
+| Manage | Monitor jobs | Supported    <br><br> [See the examples](./restore-blobs-storage-account-ps.md#track-a-job). | Supported    <br><br> [See the examples](./restore-blobs-storage-account-cli.md#track-a-job). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-restore-blobs.md#track-jobs). | N/A | N/A | N/A | N/A |
 | Manage | Modify backup policy | Currently not supported | Currently not supported | Currently not supported | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and retain backup data | Currently not supported | Currently not supported | Currently not supported | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and delete backup data | Supported | Supported | Supported | N/A | N/A | N/A | N/A |
@@ -98,7 +99,7 @@ You  can automate most backup related tasks using programmatic methods in Azure 
 | Backup | Create backup policy and configure backup | Supported   <br><br> [See the examples](./backup-managed-disks-ps.md). | Supported    <br><br> [See the examples](./backup-managed-disks-cli.md). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-backup-disks.md). | Currently not supported | Supported | Supported    <br><br> [See the examples](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.dataprotection/backup-create-disk-enable-protection). | Supported    <br><br> [See the examples](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_instance_disk). |
 | Backup | Run on-demand backup | Supported    <br><br> [See the examples](./backup-managed-disks-ps.md#run-an-on-demand-backup). | Supported    <br><br> [See the examples](./backup-managed-disks-cli.md#run-an-on-demand-backup). |  N/A | N/A | N/A | N/A | N/A |
 | Restore | Restore to new disk | Supported    <br><br> [See the examples](./restore-managed-disks-ps.md). | Supported    <br><br> [See the examples](./restore-managed-disks-cli.md). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-restore-disks.md). | N/A | N/A | N/A | N/A |
-| Manage | Monitor jobs | Supported    <br><br> [See the examples](./restore-managed-disks-ps.md#tracking-job). | Supported    <br><br> [See the examples](./restore-managed-disks-cli.md#tracking-job). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-restore-disks.md#track-jobs). | N/A | N/A |  N/A | N/A | 
+| Manage | Monitor jobs | Supported    <br><br> [See the examples](./restore-managed-disks-ps.md#tracking-job). | Supported    <br><br> [See the examples](./restore-managed-disks-cli.md#tracking-job). | Supported    <br><br> [See the examples](./backup-azure-dataprotection-use-rest-api-restore-disks.md#track-the-restore-job). | N/A | N/A |  N/A | N/A | 
 | Manage | Modify backup policy | Currently not supported | Currently not supported | Currently not supported | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and retain backup data | Supported | Supported | Supported | N/A | N/A | N/A | N/A |
 | Manage | Stop protection and delete backup data | Supported | Supported | Supported | N/A | N/A | N/A | N/A |

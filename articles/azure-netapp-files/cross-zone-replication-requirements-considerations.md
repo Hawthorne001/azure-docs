@@ -5,7 +5,7 @@ services: azure-netapp-files
 author: b-ahibbard
 ms.service: azure-netapp-files
 ms.topic: conceptual
-ms.date: 08/18/2023
+ms.date: 02/13/2025
 ms.author: anfdocs
 ---
 # Requirements and considerations for using cross-zone replication 
@@ -15,7 +15,6 @@ This article describes requirements and considerations about [using the volume c
 ## Requirements and considerations 
 
 * The cross-zone replication feature uses the [availability zone volume placement feature](use-availability-zones.md) of Azure NetApp Files.
-    * You can only use cross-zone replication in regions that support the availability zone volume placement. [!INCLUDE [Azure NetApp Files cross-zone-replication supported regions](includes/cross-zone-regions.md)]
 * To establish cross-zone replication, you must create the source volume in an availability zone.  
 * You can’t use cross-zone replication and cross-region replication together on the same source volume.
 * You can use cross-zone replication with SMB and NFS volumes. Replication of SMB volumes requires an Active Directory connection in the source and destination NetApp accounts. The destination AD connection must have access to the DNS servers or AD DS Domain Controllers that are reachable from the delegated subnet in the destination zone. For more information, see [Requirements for Active Directory connections](create-active-directory-connections.md#requirements-for-active-directory-connections). 
@@ -26,14 +25,13 @@ This article describes requirements and considerations about [using the volume c
 * Azure NetApp Files replication doesn't currently support multiple subscriptions; all replications must be performed under a single subscription.
 * See [resource limits](azure-netapp-files-resource-limits.md) for the maximum number of cross-zone destination volumes. You can open a support ticket to [request a limit increase](azure-netapp-files-resource-limits.md#request-limit-increase) in the default quota of replication destination volumes (per subscription in a region). 
 * There can be a delay up to five minutes for the interface to reflect a newly added snapshot on the source volume.  
-* Cross-zone replication does not support cascading and fan in/out topologies.
-* After you set up cross-zone replication, the replication process creates *SnapMirror snapshots* to provide references between the source volume and the destination volume. SnapMirror snapshots are cycled automatically when a new one is created for every incremental transfer. You cannot delete SnapMirror snapshots until you delete the replication relationship and volume. 
-* You cannot mount a dual-protocol volume until you [authorize replication from the source volume](cross-region-replication-create-peering.md#authorize-replication-from-the-source-volume) and the initial [transfer](cross-region-replication-display-health-status.md#display-replication-status) happens.
-* You can delete manual snapshots on the source volume of a replication relationship when the replication relationship is active or broken, and also after you've deleted replication relationship. You cannot delete manual snapshots for the destination volume until you break the replication relationship.
-* When reverting a source volume with an active volume replication relationship, only snapshots that are more recent than the SnapMirror snapshot can be used in the revert operation. For more information, see [Revert a volume using snapshot revert with Azure NetApp Files](snapshots-revert-volume.md).
+* Cross-zone replication doesn't support cascading and fan in/out topologies.
+* After you set up cross-zone replication, the replication process creates *SnapMirror snapshots* to provide references between the source volume and the destination volume. SnapMirror snapshots are cycled automatically when a new one is created for every incremental transfer. You can't delete SnapMirror snapshots until you delete the replication relationship and volume. 
+* You can't mount a dual-protocol volume until you [authorize replication from the source volume](cross-region-replication-create-peering.md#authorize-replication-from-the-source-volume) and the initial [transfer](cross-region-replication-display-health-status.md#display-replication-status) happens.
+* You can delete manual snapshots on the source volume of a replication relationship when the replication relationship is active or broken, and also after you've deleted replication relationship. You can't delete manual snapshots for the destination volume until you break the replication relationship.
+* When you revert a source volume with an active volume replication relationship, only snapshots dated more recently than the SnapMirror snapshot can be used in the revert operation. For more information, see [Revert a volume using snapshot revert with Azure NetApp Files](snapshots-revert-volume.md).
 * Data replication volumes support [customer-managed keys](configure-customer-managed-keys.md).
-* You can't currently use cross-zone replication with [large volumes](azure-netapp-files-understand-storage-hierarchy.md#large-volumes) (larger than 100 TiB).
-
+* [Large volumes](large-volumes-requirements-considerations.md) are supported with cross-zone replication only with an hourly or daily replication schedule.
 
 ## Next steps
 * [Understand cross-zone replication](cross-zone-replication-introduction.md)

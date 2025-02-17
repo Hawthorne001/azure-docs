@@ -1,14 +1,14 @@
 ---
 title: Use Bicep to deploy resources to resource groups
 description: Describes how to deploy resources in a Bicep file. It shows how to target more than one resource group.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-bicep
-ms.date: 03/20/2024
+ms.date: 02/10/2025
 ---
 
 # Resource group deployments with Bicep files
 
-This article describes how to set scope with Bicep when deploying to a resource group.
+This article describes how to set scope with Bicep when deploying to a resource group. For more information, see [Understand scope](../management/overview.md#understand-scope).
 
 ## Supported resources
 
@@ -62,18 +62,19 @@ For more detailed information about deployment commands and options for deployin
 
 ## Deployment scopes
 
-When deploying to a resource group, you can deploy resources to:
+In a Bicep file, all resources declared with the [`resource`](./resource-declaration.md) keyword must be deployed at the same scope as the deployment. For a resource group deployment, this means all `resource` declarations in the Bicep file must be deployed to the same resource group or as a child or extension resource of a resource in the same resource group as the deployment.  
 
-* the target resource group for the deployment operation
-* other resource groups in the same subscription or other subscriptions
-* any subscription in the tenant
-* the tenant for the resource group
+However, this restriction doesn't apply to [`existing`](./existing-resource.md) resources. You can reference existing resources at a different scope than the deployment.  
 
-An [extension resource](scope-extension-resources.md) can be scoped to a target that is different than the deployment target.
+To deploy resources at multiple scopes within a single deployment, use [modules](./modules.md). Deploying a module triggers a "nested deployment," allowing you to target different scopes. The user deploying the parent Bicep file must have the necessary permissions to initiate deployments at those scopes.
 
-The user deploying the template must have access to the specified scope.
+You can deploy a resource from within a resource-group scope Bicep file at the following scopes:
 
-This section shows how to specify different scopes. You can combine these different scopes in a single template.
+* [The same resource group](#scope-to-target-resource-group)
+* [Other resource groups in the same subscription](#scope-to-different-resource-group)
+* [Other resource groups in other subscriptions](#scope-to-different-resource-group)
+* [The subscription](#scope-to-subscription)
+* [The tenant](#scope-to-tenant)
 
 ### Scope to target resource group
 
@@ -81,7 +82,7 @@ To deploy resources to the target resource group, add those resources to the Bic
 
 ```bicep
 // resource deployed to target resource group
-resource exampleResource 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+resource exampleResource 'Microsoft.Storage/storageAccounts@2023-04-01' = {
   ...
 }
 ```
@@ -172,7 +173,7 @@ Instead of using a module, you can set the scope to `tenant()` for some resource
 param mgName string = 'mg-${uniqueString(newGuid())}'
 
 // ManagementGroup deployed at tenant
-resource managementGroup 'Microsoft.Management/managementGroups@2020-05-01' = {
+resource managementGroup 'Microsoft.Management/managementGroups@2023-04-01' = {
   scope: tenant()
   name: mgName
   properties: {}
@@ -187,14 +188,48 @@ For more information, see [Management group](deploy-to-management-group.md#manag
 
 To deploy resources in the target resource group, define those resources in the `resources` section of the template. The following template creates a storage account in the resource group that is specified in the deployment operation.
 
-:::code language="bicep" source="~/azure-docs-bicep-samples/samples/create-storage-account/azuredeploy.bicep":::
+```bicep
+@minLength(3)
+@maxLength(11)
+param storagePrefix string
+
+@allowed([
+  'Standard_LRS'
+  'Standard_GRS'
+  'Standard_RAGRS'
+  'Standard_ZRS'
+  'Premium_LRS'
+  'Premium_ZRS'
+  'Standard_GZRS'
+  'Standard_RAGZRS'
+])
+param storageSKU string = 'Standard_LRS'
+
+param location string = resourceGroup().location
+
+var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
+
+resource stg 'Microsoft.Storage/storageAccounts@2023-04-01' = {
+  name: uniqueStorageName
+  location: location
+  sku: {
+    name: storageSKU
+  }
+  kind: 'StorageV2'
+  properties: {
+    supportsHttpsTrafficOnly: true
+  }
+}
+
+output storageEndpoint object = stg.properties.primaryEndpoints
+```
 
 ## Deploy to multiple resource groups
 
 You can deploy to more than one resource group in a single Bicep file.
 
 > [!NOTE]
-> You can deploy to **800 resource groups** in a single deployment. Typically, this limitation means you can deploy to one resource group specified for the parent template, and up to 799 resource groups in nested or linked deployments. However, if your parent template contains only nested or linked templates and does not itself deploy any resources, then you can include up to 800 resource groups in nested or linked deployments.
+> You can deploy to **800 resource groups** in a single deployment. Typically, this limitation means you can deploy to one resource group specified for the parent template, and up to 799 resource groups in nested or linked deployments. However, if your parent template contains only nested or linked templates and doesn't itself deploy any resources, then you can include up to 800 resource groups in nested or linked deployments.
 
 The following example deploys two storage accounts. The first storage account is deployed to the resource group specified in the deployment operation. The second storage account is deployed to the resource group specified in the `secondResourceGroup` and `secondSubscriptionID` parameters:
 
@@ -235,7 +270,7 @@ Both modules use the same Bicep file named **storage.bicep**.
 param storageLocation string
 param storageName string
 
-resource storageAcct 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+resource storageAcct 'Microsoft.Storage/storageAccounts@2023-04-01' = {
   name: storageName
   location: storageLocation
   sku: {

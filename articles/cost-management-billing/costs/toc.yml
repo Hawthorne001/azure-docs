@@ -313,6 +313,8 @@
         href: ../automate/migrate-consumption-usage-details-api.md
       - name: Marketplaces API
         href: ../automate/migrate-consumption-marketplaces-api.md
+    - name: Transition from Consumption APIs to Cost Management APIs
+      href: ../automate/transition-consumption-apis-cost-management-apis.md
   - name: Reference
     items:
     - name: Exports API
@@ -322,7 +324,7 @@
     - name: Cost Management REST API
       href: /rest/api/cost-management
     - name: Cost Management REST API samples
-      href: https://github.com/Azure-Samples/Cost-Management-Samples
+      href: https://github.com/Azure-Samples/azure-cost-management-dashboard
     - name: Azure PowerShell cmdlets for Cost Management
       href: /powershell/module/Az.CostManagement
   - name: Resources

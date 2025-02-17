@@ -1,13 +1,11 @@
 ---
 title: 'Tutorial: Create a WAF policy for Azure Front Door - Azure portal'
 description: In this tutorial, you learn how to create a web application firewall (WAF) policy by using the Azure portal.
-author: vhorne
-ms.service: web-application-firewall
-services: web-application-firewall
+author: halkazwini
+ms.author: halkazwini
+ms.service: azure-web-application-firewall
 ms.topic: tutorial
-ms.date: 10/28/2022
-ms.author: victorh
-ms.custom: template-tutorial, engagement-fy23
+ms.date: 07/15/2024
 ---
 
 # Tutorial: Create a WAF policy on Azure Front Door by using the Azure portal
@@ -81,7 +79,7 @@ The following example shows how to configure a custom rule to block a request if
 
 ### Default Rule Set
 
-The Azure-managed Default Rule Set is enabled by default for the Premium and Classic tiers of Azure Front Door. The current DRS for the Premium tier of Azure Front Door is Microsoft_DefaultRuleSet_2.0. Microsoft_DefaultRuleSet_1.1 is the current DRS for the Classic tier of Azure Front Door. On the **Managed rules** page, select **Assign** to assign a different DRS.
+The Azure-managed Default Rule Set is enabled by default for the Premium and Classic tiers of Azure Front Door. The current DRS for the Premium tier of Azure Front Door is Microsoft_DefaultRuleSet_2.1. Microsoft_DefaultRuleSet_1.1 is the current DRS for the Classic tier of Azure Front Door. On the **Managed rules** page, select **Assign** to assign a different DRS.
 
 To disable an individual rule, select the checkbox in front of the rule number and select **Disable** at the top of the page. To change action types for individual rules within the rule set, select the checkbox in front of the rule number and select **Change action** at the top of the page.
 

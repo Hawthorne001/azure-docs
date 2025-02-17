@@ -4,9 +4,8 @@ description: This article enumerates the Apache Airflow configurations supported
 author: nabhishek
 ms.author: abnarain
 ms.reviewer: jburchel
-ms.service: data-factory
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 02/13/2025
 ---
 
 # Supported Apache Airflow configurations

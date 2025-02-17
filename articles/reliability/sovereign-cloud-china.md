@@ -7,7 +7,7 @@ ms.topic: conceptual
 ms.date: 09/08/2023
 ms.author: anaharris
 ms.reviewer: cynthn
-ms.custom: references_regions, subject-reliability
+ms.custom: references_regions
 ---
 
 # Availability of services for Microsoft Azure operated by 21Vianet
@@ -25,9 +25,9 @@ This section outlines variations and considerations when using Azure Bot Service
 
 | Product | Unsupported, limited, and/or modified features | Notes |
 |---------|--------|------------|
-|Azure Machine Learning| See [Azure Machine Learning feature availability across Azure in China cloud regions](../machine-learning/reference-machine-learning-cloud-parity.md#azure-operated-by-21vianet). | |
-| Azure AI Speech| See [Azure AI services: Azure in China - Speech service](../ai-services/speech-service/sovereign-clouds.md?tabs=c-sharp.md#microsoft-azure-operated-by-21vianet)  ||
-| Azure AI Speech|For feature variations and limitations, including API endpoints, see [Translator in sovereign clouds](../ai-services/translator/sovereign-clouds.md?tabs=china).|
+|Azure Machine Learning| See [Azure Machine Learning feature availability across Azure in China cloud regions](/azure/machine-learning/reference-machine-learning-cloud-parity#azure-operated-by-21vianet). | |
+| Azure AI Speech| See [Azure AI services: Azure in China - Speech service](/azure/ai-services/speech-service/sovereign-clouds?tabs=c-sharp.md#microsoft-azure-operated-by-21vianet)  ||
+| Azure AI Speech|For feature variations and limitations, including API endpoints, see [Translator in sovereign clouds](/azure/ai-services/translator/sovereign-clouds?tabs=china).|
 
 <a name='azure-ad-external-identities'></a>
 
@@ -104,6 +104,12 @@ This section outlines variations and considerations when using Azure Container A
 |---------|--------|------------|
 | Azure Monitor| The Azure Monitor integration isn't supported for Azure in China |
 
+### Azure Managed Grafana
+
+| Product               | Unsupported, limited, and/or modified features                                                                                                            | Notes |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-------|
+| Azure Managed Grafana | See [Azure Managed Grafana: Feature availability in sovereign clouds](../managed-grafana/known-limitations.md?#feature-availability-in-sovereign-clouds). |       |
+
 ### Azure China Commercial Marketplace operated by 21Vianet
  
 To learn which commercial marketplace features are available in Azure China Commercial Marketplace operated by 21Vianet, as compared to the Azure global commercial marketplace, see [Feature availability for Azure China Commercial Marketplace operated by 21Vianet](/partner-center/marketplace/azure-in-china-feature-availability).
@@ -135,7 +141,7 @@ The table below lists ways to connect to your Azure account in Azure Global vs. 
 
 The table below lists API endpoints in Azure Global vs. Azure in China for accessing and managing some of the more common services. 
 
-For IP rangers for Azure in China, download [Azure Datacenter IP Ranges in China](https://www.microsoft.com/download/confirmation.aspx?id=57062).
+For IP rangers for Azure in China, download [Azure Datacenter IP Ranges in China](https://www.microsoft.com/en-us/download/details.aspx?id=57062).
 
 | Service category | Azure Global | Azure in China |
 |-|-|-|
